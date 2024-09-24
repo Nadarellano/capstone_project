@@ -77,8 +77,8 @@ DATABASES = {
     }
 }
 
-database_url = os.environ.get("DATABASE_URL")
-DATABASES["default"] = dj_database_url.parse(database_url)
+# database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse("postgresql://capstone_postgres_jc90_user:u9p7wdUafTzzCnE9kQGCxvPBk7V1sYNo@dpg-crp2f0lds78s73d3gjr0-a.oregon-postgres.render.com/capstone_postgres_jc90")
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
