@@ -10,17 +10,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =("u9p7wdUafTzzCnE9kQGCxvPBk7V1sYNo")
-
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = os.environ.get("DEBUG", "False").lower == "true"
-
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower == "true"
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost").split(" ")
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1" ]
+
 
 
 
@@ -80,9 +77,11 @@ DATABASES = {
         'OPTIONS': {'charset': 'utf8mb4'}, 
     }
 }
+database_url = os.environ.get("DATABASE_URL")
 
-# database_url = os.environ.get("DATABASE_URL")
-DATABASES["default"] = dj_database_url.parse("postgresql://capstone_postgres_jc90_user:u9p7wdUafTzzCnE9kQGCxvPBk7V1sYNo@dpg-crp2f0lds78s73d3gjr0-a.oregon-postgres.render.com/capstone_postgres_jc90")
+DATABASES["default"] = dj_database_url.parse(database_url)
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -105,14 +104,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "es"
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "America/Santiago"
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -123,3 +121,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
