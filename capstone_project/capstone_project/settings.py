@@ -1,4 +1,4 @@
-import dj_database_url
+import   dj_database_url
 
 from pathlib import Path
 
