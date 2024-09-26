@@ -12,7 +12,8 @@ pillow = "*"
 pylint-celery = "*"
 gunicorn = "*"
 dj-database-url = "*"
-
+psycopg2 = "*"
+psycopg2-binary = "*"
 [dev-packages]
 
 [requires]
