@@ -11,6 +11,7 @@ django-ckeditor = "*"
 pillow = "*"
 pylint-celery = "*"
 gunicorn = "*"
+deploy = "*"
 
 [dev-packages]
 
