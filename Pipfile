@@ -10,6 +10,7 @@ django = "*"
 django-ckeditor = "*"
 pillow = "*"
 pylint-celery = "*"
+gunicorn = "*"
 
 [dev-packages]
 
