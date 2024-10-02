@@ -116,16 +116,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Donde se recogerán todos los archivos estáticos al ejecutar collectstatic
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'core', 'static'),  # Donde están tus archivos estáticos en desarrollo
+]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Asegúrate de que esta línea esté presente
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
