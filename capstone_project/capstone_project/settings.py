@@ -1,6 +1,8 @@
-import dj_database_url
-from pathlib import Path
 import os
+from pathlib import Path
+import dj_database_url
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -121,15 +123,12 @@ USE_TZ = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-STATIC_URL = 'core/static/'
+STATIC_URL = '/static/'
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Asegúrate de que esta línea esté presente
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
+# Primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"    
