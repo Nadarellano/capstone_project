@@ -1,18 +1,29 @@
 import os
+
 from pathlib import Path
 import dj_database_url
+import environ
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Initialize environment variables
+env = environ.Env()
+# Reading .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
 
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-for-development')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -73,17 +84,20 @@ WSGI_APPLICATION = "capstone_project.wsgi.application"
 
 
 
-DATABASES = {
-    'default': {
-        # ... other settings ...
-        'OPTIONS': {'charset': 'utf8mb4'}, 
+# Configuración de la base de datos
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+        )
     }
-}
+    print("Using Database URL:", DATABASE_URL)  # Para depuración
+else:
+    print("No DATABASE_URL found in environment variables")  # Para depuración
 
-# Verificar si la variable DATABASE_URL está presente y sobreescribir la configuración de la base de datos
-database_url = os.environ.get("DATABASE_URL")
-if database_url:
-    DATABASES["default"] = dj_database_url.parse(database_url)
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -106,9 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "es"
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "America/Santiago"
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
