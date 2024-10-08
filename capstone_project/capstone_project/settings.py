@@ -48,8 +48,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -133,14 +133,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 
+# Configuración de archivos estáticos
+STATIC_URL = '/static/'  # URL para acceder a los archivos estáticos
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+# Directorio donde Django almacenará los archivos estáticos recopilados (collectstatic)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATIC_URL = '/static/'
+# Directorio para los archivos estáticos propios de la aplicación (CSS, JS, imágenes, etc.)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Asegúrate de que esta línea esté presente
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
